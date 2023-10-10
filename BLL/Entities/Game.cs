@@ -54,7 +54,7 @@ public class Game
     public void PrintGame()
     {
         Console.Clear();
-        if (Cards == null) throw new Exception("No cards available.");
+        if (Cards == null) throw new Exception("Geen kaarten beschikbaar.");
         //Sort the cards so that they will be printend on index
         List<Card> sortedCards = Cards.OrderBy(card => card.Index).ToList();
         for (int i = 0; i < sortedCards.Count; i++)
@@ -64,8 +64,4 @@ public class Game
             if ((i + 1) % CardAmount == 0) Console.WriteLine();
         }
     }
-}
-public enum Symbols
-{
-
 }

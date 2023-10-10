@@ -44,36 +44,26 @@ public static class GameService
             Console.WriteLine("Welke kaart wil je omdraaien...");
 
             // Read the user input as a string
-            string userInput = Console.ReadLine();
+            string? userInput = Console.ReadLine();
 
             // Try to parse the string to an integer
             if (int.TryParse(userInput, out choice))
             {
-                // Now 'choice' holds the parsed integer
-                // Add your logic for checking if the choice is valid
                 if (IsValidCardChoice(choice))
                 {
                     break; // Exit the loop if a valid choice is given
                 }
-                else
-                {
-                    Console.WriteLine("Invalid choice. Please enter a valid number.");
-                }
+                else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
             }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid number.");
-            }
+            else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
         }
-
         return choice;
     }
 
     public static bool IsValidCardChoice(int choice)
     {
-        // Add your logic for checking if the choice is within the valid range or meets any other criteria
-        // For example, you might check if it's within the range of the number of cards
-        return choice >= 1 && choice <= (game?.CardAmount * 2);
+        Card? card = game.Cards.Find(c => c.Index == choice);
+        return choice >= 1 && choice <= (game?.CardAmount * 2) && !card.IsTurned;
     }
 
 }
