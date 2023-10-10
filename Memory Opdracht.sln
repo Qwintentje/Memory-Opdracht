@@ -4,12 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Memory Opdracht\Console.csproj", "{10BF99D5-349D-43A5-AAC5-FC579654D9BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F} = {81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "BLL\Business.csproj", "{81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{C313F8CA-B72C-4BFD-A56B-67DC9D20CC03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{C313F8CA-B72C-4BFD-A56B-67DC9D20CC03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{60A923CB-E0B0-4DB2-8625-46224C4A286C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF", "WPF\WPF.csproj", "{60A923CB-E0B0-4DB2-8625-46224C4A286C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
