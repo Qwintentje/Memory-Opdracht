@@ -19,7 +19,7 @@ public class Game
     public GameStatus Status { get; set; } = GameStatus.Unknown;
     public Game(string? playerName, int cardAmount)
     {
-        PlayerName = playerName;
+        PlayerName = playerName == null ? "" : playerName;
         CardAmount = cardAmount < 0 ? 2 : cardAmount;
         Status = GameStatus.Pending;
         Id = Guid.NewGuid().ToString();

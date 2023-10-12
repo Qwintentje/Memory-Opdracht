@@ -22,7 +22,7 @@ public class Database
                 }
             }
         }
-        catch (MySqlException e)
+        catch
         {
             Console.WriteLine("Er is iets fout met de database, neem contact op met Quinten");
         }
@@ -57,7 +57,7 @@ public class Database
                 }
             }
         }
-        catch (MySqlException e)
+        catch
         {
             Console.WriteLine("Er is iets fout met de database, neem contact op met Quinten");
         }

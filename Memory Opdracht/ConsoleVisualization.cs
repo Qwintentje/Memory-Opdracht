@@ -50,8 +50,12 @@ public class ConsoleVisualization
             if (GameService.CheckGameFinished())
             {
                 Console.WriteLine("Game is afgelopen");
-                Console.WriteLine($"{GameService.Game.Attempts} pogingen in {GameService.Game.Duration} seconden");
-                Console.WriteLine($"Score: {GameService.Game.Score}");
+                if (GameService.Game != null)
+                {
+                    Console.WriteLine($"{GameService.Game.Attempts} pogingen in {GameService.Game.Duration} seconden");
+                    Console.WriteLine($"Score: {GameService.Game.Score}");
+                }
+                else throw new Exception("Game not found");
                 break;
             }
         }

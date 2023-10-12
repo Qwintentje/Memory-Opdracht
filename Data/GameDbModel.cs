@@ -2,7 +2,7 @@
 
 public class GameDbModel
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = "";
     public string PlayerName { get; set; } = "";
     private int score;
     public double Score

@@ -9,8 +9,8 @@ public static class GameService
     public static string Initialize()
     {
         Console.WriteLine("Vul een naam in...");
-        string? playerName = Console.ReadLine().ToString();
-        playerName = string.IsNullOrWhiteSpace(playerName) ? "Speler" : playerName;
+        string? playerName = Console.ReadLine();
+        if (!string.IsNullOrEmpty(playerName)) playerName = playerName.ToString(); else playerName = "Speler";
         Game = new Game(playerName, defaultCardAmount);
         Game.SetCards();
         return playerName;
@@ -26,25 +26,29 @@ public static class GameService
     {
         stopwatch.Reset();
         stopwatch.Start();
-        Game.Status = GameStatus.InProgress;
+        if (Game != null) Game.Status = GameStatus.InProgress;
     }
 
     public static bool IsValidCardChoice(int choice)
     {
         Card? card = Game?.Cards.Find(c => c.Index == choice);
-        return choice >= 1 && choice <= (Game?.CardAmount * 2) && !card.IsTurned;
+        if (card != null) return choice >= 1 && choice <= (Game?.CardAmount * 2) && !card.IsTurned; else return true;
     }
 
     public static Card GetCard(int index)
     {
-        Card? card = Game.Cards.Find(c => c.Index == index);
-        if (card == null) throw new Exception("No card found");
-        return card;
+        if (Game != null)
+        {
+            Card? card = Game.Cards.Find(c => c.Index == index);
+            if (card == null) throw new Exception("No card found");
+            return card;
+        }
+        else throw new Exception("Game not found");
     }
 
     public static bool CheckMatch(Card card1, Card card2)
     {
-        Game.Attempts++;
+        if (Game != null) Game.Attempts++;
         if (card1.MatchingCard == card2 && card2.MatchingCard == card1)
         {
             return true;
@@ -57,38 +61,51 @@ public static class GameService
 
     public static bool CheckGameFinished()
     {
-        bool isFinished = Game.Cards.All(c => c.IsTurned);
-        if (isFinished)
+        if (Game != null)
         {
-            EndGame();
+            bool isFinished = Game.Cards.All(c => c.IsTurned);
+            if (isFinished)
+            {
+                EndGame();
+            }
+            return isFinished;
         }
-        return isFinished;
+        else throw new Exception("Game not found");
+
     }
 
     public static double CalculateScore()
     {
-        double first = (Game.CardAmount * 2) * (Game.CardAmount * 2);
-        double second = Game.Duration * Game.Attempts;
-        double score = (first / second) * 1000;
-        Game.Score = score;
-        return score;
+        if (Game != null)
+        {
+            double first = (Game.CardAmount * 2) * (Game.CardAmount * 2);
+            double second = Game.Duration * Game.Attempts;
+            double score = (first / second) * 1000;
+            Game.Score = score;
+            return score;
+        }
+        else throw new Exception("Game not found");
     }
 
     public static void EndGame()
     {
-        Game.Status = GameStatus.Finished;
-        stopwatch.Stop();
-        Game.Duration = (int)stopwatch.Elapsed.TotalSeconds;
-        CalculateScore();
-        Database db = new Database();
-        GameDbModel gameDbModel = new GameDbModel()
+        if (Game != null)
         {
-            Id = Game.Id,
-            PlayerName = Game.PlayerName,
-            Score = Game.Score,
-            CardAmount = Game.CardAmount,
-            Attempts = Game.Attempts
-        };
-        db.InsertGame(gameDbModel);
+            Game.Status = GameStatus.Finished;
+            stopwatch.Stop();
+            Game.Duration = (int)stopwatch.Elapsed.TotalSeconds;
+            CalculateScore();
+            Database db = new Database();
+            GameDbModel gameDbModel = new GameDbModel()
+            {
+                Id = Game.Id,
+                PlayerName = Game.PlayerName,
+                Score = Game.Score,
+                CardAmount = Game.CardAmount,
+                Attempts = Game.Attempts
+            };
+            db.InsertGame(gameDbModel);
+        }
+        else throw new Exception("Game not found");
     }
 }
