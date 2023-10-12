@@ -10,25 +10,38 @@ public class Card
 
     public Card(int i)
     {
+        //
         Symbol = GetSymbol(i);
         Id = Guid.NewGuid().ToString();
     }
 
     private string GetSymbol(int i)
     {
-        // You can customize this logic based on your symbol requirements
-        switch (i % 10)
+        switch (i)
         {
-            case 0: return "?";
-            case 1: return "!";
-            case 2: return "#";
-            case 3: return "$";
-            case 4: return "%";
-            case 5: return "&";
-            case 6: return "@";
-            case 7: return "*";
-            case 8: return "+";
-            case 9: return "-";
+            case 0: return "!";
+            case 2: return "@";
+            case 4: return "#";
+            case 6: return "$";
+            case 8: return "%";
+            case 10: return "^";
+            case 12: return "&";
+            case 14: return "*";
+            case 16: return "(";
+            case 18: return ")";
+            case 20: return "-";
+            case 22: return "_";
+            case 24: return "=";
+            case 26: return "+";
+            case 28: return "}";
+            case 30: return "{";
+            case 32: return ";";
+            case 34: return "/";
+            case 36: return "<";
+            case 38: return ">";
+            case 40: return "";
+            case 42: return "}";
+            case 44: return "}";
             default: return "?";
         }
     }

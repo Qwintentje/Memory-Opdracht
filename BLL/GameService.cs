@@ -4,7 +4,7 @@ public static class GameService
 {
     public static Game? Game { get; set; }
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
-    private static int defaultCardAmount = 2;
+    private static int defaultCardAmount = 5;
 
     public static string Initialize()
     {
