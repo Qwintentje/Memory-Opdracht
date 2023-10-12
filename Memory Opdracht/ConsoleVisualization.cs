@@ -1,0 +1,95 @@
+﻿namespace Memory_Opdracht;
+
+public class ConsoleVisualization
+{
+    public static void PrepareGame(string? name)
+    {
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"Username: {name}\nDruk op spatie om het spel te starten...");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                Console.WriteLine("\nSpel aan het starten...");
+                GameService.Start();
+                break; // Exit the loop once the space key is pressed
+            }
+        }
+        GameService.Start();
+        Start();
+    }
+
+    public static void Start()
+    {
+        while (true)
+        {
+            PrintGame();
+            var firstChoice = GetChoice();
+            Card firstCard = GameService.GetCard(firstChoice);
+            firstCard.IsTurned = true;
+            PrintGame();
+
+            var secondChoice = GetChoice();
+            Card secondCard = GameService.GetCard(secondChoice);
+            secondCard.IsTurned = true;
+            PrintGame();
+
+            if (!GameService.CheckMatch(firstCard, secondCard))
+            {
+                firstCard.IsTurned = false;
+                secondCard.IsTurned = false;
+            }
+            else
+            {
+                Console.WriteLine("Je hebt een match gevonden!");
+                Thread.Sleep(2000);
+            }
+            if (GameService.CheckGameFinished())
+            {
+                Console.WriteLine("Game is afgelopen");
+                Console.WriteLine($"{GameService.Game.Attempts} pogingen in {GameService.Game.Duration} seconden");
+                Console.WriteLine($"Score: {GameService.Game.Score}");
+                break;
+            }
+        }
+    }
+    public static int GetChoice()
+    {
+        int choice;
+
+        while (true)
+        {
+            Console.WriteLine("Welke kaart wil je omdraaien...");
+
+            string? userInput = Console.ReadLine();
+
+            if (int.TryParse(userInput, out choice))
+            {
+                if (GameService.IsValidCardChoice(choice))
+                {
+                    break; // Exit the loop if a valid choice is given
+                }
+                else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
+            }
+            else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
+        }
+        return choice;
+    }
+
+    public static void PrintGame()
+    {
+        Console.Clear();
+        if (GameService.Game?.Cards == null) throw new Exception("Geen kaarten beschikbaar.");
+        //Sort the cards so that they will be printend based on index
+        List<Card>? sortedCards = GameService.Game?.Cards.OrderBy(card => card.Index).ToList();
+        for (int i = 0; i < sortedCards?.Count; i++)
+        {
+            if (sortedCards[i].IsTurned) Console.Write($"[{sortedCards[i].Symbol}] ");
+            else Console.Write($"[{sortedCards[i].Index}] ");
+            if ((i + 1) % GameService.Game?.CardAmount == 0) Console.WriteLine();
+        }
+    }
+}

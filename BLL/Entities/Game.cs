@@ -8,13 +8,14 @@ public class Game
     public int Attempts { get; set; }
     public int CardAmount { get; set; }
     public List<Card> Cards { get; set; } = new List<Card>();
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public int Duration { get; set; }
+    public GameStatus Status { get; set; } = GameStatus.Unknown;
 
     public Game(string? playerName, int cardAmount)
     {
-        PlayerName = string.IsNullOrWhiteSpace(playerName) ? "No Name Given" : playerName;
+        PlayerName = playerName;
         CardAmount = cardAmount < 0 ? 2 : cardAmount;
+        Status = GameStatus.Pending;
     }
 
     public void SetCards()
@@ -51,17 +52,5 @@ public class Game
     }
 
 
-    public void PrintGame()
-    {
-        Console.Clear();
-        if (Cards == null) throw new Exception("Geen kaarten beschikbaar.");
-        //Sort the cards so that they will be printend on index
-        List<Card> sortedCards = Cards.OrderBy(card => card.Index).ToList();
-        for (int i = 0; i < sortedCards.Count; i++)
-        {
-            if (sortedCards[i].IsTurned) Console.Write($"[{sortedCards[i].Symbol}] ");
-            else Console.Write($"[{sortedCards[i].Index}] ");
-            if ((i + 1) % CardAmount == 0) Console.WriteLine();
-        }
-    }
+
 }

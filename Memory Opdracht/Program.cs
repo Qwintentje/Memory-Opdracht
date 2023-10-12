@@ -1,18 +1,7 @@
 ﻿Console.WriteLine("Vul een naam in...");
-string? name = Console.ReadLine()?.ToString();
+string? name = Console.ReadLine().ToString();
+name = string.IsNullOrWhiteSpace(name) ? "Speler" : name;
 GameService.Initialize(name);
+ConsoleVisualization.PrepareGame(name);
 
 
-while (true)
-{
-    Console.Clear();
-    Console.WriteLine($"Username: {name}\nDruk op spatie om het spel te starten...");
-    ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-    if (keyInfo.Key == ConsoleKey.Spacebar)
-    {
-        Console.WriteLine("\nSpel aan het starten...");
-        GameService.StartConsole();
-        break; // Exit the loop once the space key is pressed
-    }
-}

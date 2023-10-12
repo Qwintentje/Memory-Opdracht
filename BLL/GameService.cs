@@ -1,16 +1,14 @@
-﻿using System.Diagnostics;
-
-namespace Business;
+﻿namespace Business;
 
 public static class GameService
 {
-    private static Game? game { get; set; }
+    public static Game? Game { get; set; }
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
 
     public static void Initialize(string? playerName)
     {
-        game = new Game(playerName, 5);
-        game.SetCards();
+        Game = new Game(playerName, 5);
+        Game.SetCards();
     }
     /*    public static void Initialize(string playerName, int cardAmount, plaatjes)
         {
@@ -19,51 +17,61 @@ public static class GameService
             game.SetCards(plaatjes);
         }*/
 
-    public static void StartConsole()
+    public static void Start()
     {
         stopwatch.Reset();
         stopwatch.Start();
-        game?.PrintGame();
-
-        int choice = GetChoice();
-        Card? card = game?.Cards.Find(c => c.Index == choice);
-        card.IsTurned = true;
-        game?.PrintGame();
-        int choice2 = GetChoice();
-        Card? card2 = game?.Cards.Find(c => c.Index == choice2);
-        card2.IsTurned = true;
-        game?.PrintGame();
-    }
-
-    public static int GetChoice()
-    {
-        int choice;
-
-        while (true)
-        {
-            Console.WriteLine("Welke kaart wil je omdraaien...");
-
-            // Read the user input as a string
-            string? userInput = Console.ReadLine();
-
-            // Try to parse the string to an integer
-            if (int.TryParse(userInput, out choice))
-            {
-                if (IsValidCardChoice(choice))
-                {
-                    break; // Exit the loop if a valid choice is given
-                }
-                else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
-            }
-            else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
-        }
-        return choice;
+        Game.Status = GameStatus.InProgress;
     }
 
     public static bool IsValidCardChoice(int choice)
     {
-        Card? card = game.Cards.Find(c => c.Index == choice);
-        return choice >= 1 && choice <= (game?.CardAmount * 2) && !card.IsTurned;
+        Card? card = Game?.Cards.Find(c => c.Index == choice);
+        return choice >= 1 && choice <= (Game?.CardAmount * 2) && !card.IsTurned;
     }
 
+    public static Card GetCard(int index)
+    {
+        Card? card = Game.Cards.Find(c => c.Index == index);
+        if (card == null) throw new Exception("No card found");
+        return card;
+    }
+
+    public static bool CheckMatch(Card card1, Card card2)
+    {
+        Game.Attempts++;
+        if (card1.MatchingCard == card2 && card2.MatchingCard == card1)
+        {
+            return true;
+        }
+        Thread.Sleep(2000);
+        card1.IsTurned = false;
+        card2.IsTurned = false;
+        return false;
+    }
+
+    public static bool CheckGameFinished()
+    {
+        bool isFinished = Game.Cards.All(c => c.IsTurned);
+        if (isFinished)
+        {
+            EndGame();
+        }
+        return isFinished;
+    }
+
+    public static int CalculateScore()
+    {
+        int score = (int)(Math.Pow(2, Game.Cards.Count) / (Game.Duration * Game.Attempts)) * 1000;
+        Game.Score = score;
+        return score;
+    }
+
+    public static void EndGame()
+    {
+        Game.Status = GameStatus.Finished;
+        stopwatch.Stop();
+        Game.Duration = (int)stopwatch.Elapsed.TotalSeconds;
+        CalculateScore();
+    }
 }
