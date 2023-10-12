@@ -1,5 +1,4 @@
 ﻿namespace Business.Entities;
-
 public class Game
 {
     public string Id { get; set; }
@@ -18,7 +17,6 @@ public class Game
     public List<Card> Cards { get; set; } = new List<Card>();
     public int Duration { get; set; }
     public GameStatus Status { get; set; } = GameStatus.Unknown;
-
     public Game(string? playerName, int cardAmount)
     {
         PlayerName = playerName;

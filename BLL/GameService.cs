@@ -4,11 +4,16 @@ public static class GameService
 {
     public static Game? Game { get; set; }
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
+    private static int defaultCardAmount = 2;
 
-    public static void Initialize(string? playerName)
+    public static string Initialize()
     {
-        Game = new Game(playerName, 5);
+        Console.WriteLine("Vul een naam in...");
+        string? playerName = Console.ReadLine().ToString();
+        playerName = string.IsNullOrWhiteSpace(playerName) ? "Speler" : playerName;
+        Game = new Game(playerName, defaultCardAmount);
         Game.SetCards();
+        return playerName;
     }
     /*    public static void Initialize(string playerName, int cardAmount, plaatjes)
         {

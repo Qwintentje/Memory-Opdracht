@@ -97,19 +97,22 @@ public class ConsoleVisualization
     {
         Data.Database db = new Data.Database();
         var Highscores = db.GetHighscores();
-
-        Console.WriteLine("Top 10 High Scores:");
-
-        int playerNameWidth = 25;
-        int scoreWidth = 10;
-        int attemptsWidth = 15;
-        int cardAmountWidth = 20;
-
-        Console.WriteLine($"{FormatColumn("Speler", playerNameWidth)}{FormatColumn("Score", scoreWidth)}{FormatColumn("Pogingen", attemptsWidth)}{FormatColumn("Aantal kaarten", cardAmountWidth)}");
-        Console.WriteLine("---------------------------------------------------------------");
-        foreach (var game in Highscores)
+        if (Highscores.Count > 0)
         {
-            Console.WriteLine($"{FormatColumn(game.PlayerName, playerNameWidth)}{FormatColumn(game.Score.ToString(), scoreWidth)}{FormatColumn(game.Attempts.ToString(), attemptsWidth)}{FormatColumn(game.CardAmount.ToString(), cardAmountWidth)}");
+            Console.WriteLine("Top 10 High Scores:");
+
+            int playerNameWidth = 25;
+            int scoreWidth = 10;
+            int attemptsWidth = 15;
+            int cardAmountWidth = 20;
+
+            Console.WriteLine($"{FormatColumn("Speler", playerNameWidth)}{FormatColumn("Score", scoreWidth)}{FormatColumn("Pogingen", attemptsWidth)}{FormatColumn("Aantal kaarten", cardAmountWidth)}");
+            Console.WriteLine("---------------------------------------------------------------");
+            foreach (var game in Highscores)
+            {
+                Console.WriteLine($"{FormatColumn(game.PlayerName, playerNameWidth)}{FormatColumn(game.Score.ToString(), scoreWidth)}{FormatColumn(game.Attempts.ToString(), attemptsWidth)}{FormatColumn(game.CardAmount.ToString(), cardAmountWidth)}");
+            }
+            Console.WriteLine("---------------------------------------------------------------");
         }
     }
 

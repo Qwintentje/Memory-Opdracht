@@ -1,5 +1,4 @@
 ﻿namespace Business.Entities;
-
 public class Card
 {
     public string Id { get; set; }
