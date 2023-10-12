@@ -2,7 +2,7 @@
 
 public class Card
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public Card? MatchingCard { get; set; }
     public int Index { get; set; }
     public string Symbol { get; set; } = "";
@@ -12,7 +12,7 @@ public class Card
     public Card(int i)
     {
         Symbol = GetSymbol(i);
-        Id = Guid.NewGuid();
+        Id = Guid.NewGuid().ToString();
     }
 
     private string GetSymbol(int i)

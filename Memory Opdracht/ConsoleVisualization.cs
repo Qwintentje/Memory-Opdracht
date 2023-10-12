@@ -8,13 +8,13 @@ public class ConsoleVisualization
         while (true)
         {
             Console.Clear();
+            PrintHighscores();
             Console.WriteLine($"Username: {name}\nDruk op spatie om het spel te starten...");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 Console.WriteLine("\nSpel aan het starten...");
-                GameService.Start();
                 break; // Exit the loop once the space key is pressed
             }
         }
@@ -92,4 +92,30 @@ public class ConsoleVisualization
             if ((i + 1) % GameService.Game?.CardAmount == 0) Console.WriteLine();
         }
     }
+
+    public static void PrintHighscores()
+    {
+        Data.Database db = new Data.Database();
+        var Highscores = db.GetHighscores();
+
+        Console.WriteLine("Top 10 High Scores:");
+
+        int playerNameWidth = 25;
+        int scoreWidth = 10;
+        int attemptsWidth = 15;
+        int cardAmountWidth = 20;
+
+        Console.WriteLine($"{FormatColumn("Speler", playerNameWidth)}{FormatColumn("Score", scoreWidth)}{FormatColumn("Pogingen", attemptsWidth)}{FormatColumn("Aantal kaarten", cardAmountWidth)}");
+        Console.WriteLine("---------------------------------------------------------------");
+        foreach (var game in Highscores)
+        {
+            Console.WriteLine($"{FormatColumn(game.PlayerName, playerNameWidth)}{FormatColumn(game.Score.ToString(), scoreWidth)}{FormatColumn(game.Attempts.ToString(), attemptsWidth)}{FormatColumn(game.CardAmount.ToString(), cardAmountWidth)}");
+        }
+    }
+
+    private static string FormatColumn(string value, int width)
+    {
+        return value.PadRight(width);
+    }
+
 }

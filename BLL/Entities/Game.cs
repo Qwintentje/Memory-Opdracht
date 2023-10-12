@@ -2,9 +2,17 @@
 
 public class Game
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string PlayerName { get; set; }
-    public int Score { get; set; }
+    private int score;
+    public double Score
+    {
+        get => score;
+        set
+        {
+            score = (int)value;
+        }
+    }
     public int Attempts { get; set; }
     public int CardAmount { get; set; }
     public List<Card> Cards { get; set; } = new List<Card>();
@@ -16,7 +24,17 @@ public class Game
         PlayerName = playerName;
         CardAmount = cardAmount < 0 ? 2 : cardAmount;
         Status = GameStatus.Pending;
+        Id = Guid.NewGuid().ToString();
     }
+
+    /*    public Game(Guid id, string playerName, double score, int attempts, int cardAmount)
+        {
+            Id = id;
+            PlayerName = playerName;
+            Score = score;
+            Attempts = attempts;
+            CardAmount = cardAmount;
+        }*/
 
     public void SetCards()
     {

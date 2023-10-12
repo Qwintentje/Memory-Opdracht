@@ -60,9 +60,11 @@ public static class GameService
         return isFinished;
     }
 
-    public static int CalculateScore()
+    public static double CalculateScore()
     {
-        int score = (int)(Math.Pow(2, Game.Cards.Count) / (Game.Duration * Game.Attempts)) * 1000;
+        double first = (Game.CardAmount * 2) * (Game.CardAmount * 2);
+        double second = Game.Duration * Game.Attempts;
+        double score = (first / second) * 1000;
         Game.Score = score;
         return score;
     }
@@ -73,5 +75,15 @@ public static class GameService
         stopwatch.Stop();
         Game.Duration = (int)stopwatch.Elapsed.TotalSeconds;
         CalculateScore();
+        Database db = new Database();
+        GameDbModel gameDbModel = new GameDbModel()
+        {
+            Id = Game.Id,
+            PlayerName = Game.PlayerName,
+            Score = Game.Score,
+            CardAmount = Game.CardAmount,
+            Attempts = Game.Attempts
+        };
+        db.InsertGame(gameDbModel);
     }
 }
