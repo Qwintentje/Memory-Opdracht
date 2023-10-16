@@ -19,20 +19,11 @@ public class Game
     public GameStatus Status { get; set; } = GameStatus.Unknown;
     public Game(string? playerName, int cardAmount)
     {
-        PlayerName = playerName == null ? "" : playerName;
-        CardAmount = cardAmount < 0 ? 2 : cardAmount;
+        PlayerName = playerName == null ? "Speler" : playerName;
+        CardAmount = cardAmount < 0 ? 5 : cardAmount;
         Status = GameStatus.Pending;
         Id = Guid.NewGuid().ToString();
     }
-
-    /*    public Game(Guid id, string playerName, double score, int attempts, int cardAmount)
-        {
-            Id = id;
-            PlayerName = playerName;
-            Score = score;
-            Attempts = attempts;
-            CardAmount = cardAmount;
-        }*/
 
     public void SetCards()
     {

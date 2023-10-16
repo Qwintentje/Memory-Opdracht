@@ -4,7 +4,6 @@ public class ConsoleVisualization
 {
     public static void PrepareGame(string? name)
     {
-
         while (true)
         {
             Console.Clear();
@@ -84,9 +83,7 @@ public class ConsoleVisualization
     {
         Console.Clear();
         if (GameService.Game?.Cards == null) throw new Exception("Geen kaarten beschikbaar.");
-        //Sort the cards so that they will be printend based on index
-        //List<Card>? sortedCards = GameService.Game?.Cards.OrderBy(card => card.Index).ToList();
-        for (int i = 0; i < GameService.Game.Cards?.Count; i++)
+        for (int i = 0; i < GameService.Game?.Cards?.Count; i++)
         {
             if (GameService.Game.Cards[i].IsTurned) Console.Write($"[{GameService.Game.Cards?[i].Symbol}] ");
             else Console.Write($"[{GameService.Game.Cards?[i].Index}] ");

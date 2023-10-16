@@ -10,9 +10,8 @@ public class Card
 
     public Card(int i)
     {
-        //
-        Symbol = GetSymbol(i);
         Id = Guid.NewGuid().ToString();
+        Symbol = GetSymbol(i);
     }
 
     private string GetSymbol(int i)
