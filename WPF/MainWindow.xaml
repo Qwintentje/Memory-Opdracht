@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Memory" Height="640" Width="960" 
+        WindowStartupLocation="CenterScreen" 
+        Icon="Assets\Logo.png"
+        Background="#7fb3ff"
+        WindowStyle="None">
     <Grid>
+        <Image Source="Assets/Logo.png" Width="200" Height="200" VerticalAlignment="Top" Margin="0 0 0 0"></Image>
+        <TextBlock Text="Memory" Style="{DynamicResource Text}" FontSize="60" HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   Margin="0,150,0,0"/>
 
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Margin="0 100 0 0">
+            <Button Content="Play" Margin="10"  Click="PlayButton_Click" Style="{DynamicResource TextButton}"/>
+            <Button Content="Leaderboard" Margin="10" Click="LeaderboardButton_Click" Style="{DynamicResource TextButton}"/>
+            <Button Content="Quit" Margin="10" Click="QuitButton_Click" Style="{DynamicResource TextButton}"/>
+        </StackPanel>
     </Grid>
 </Window>

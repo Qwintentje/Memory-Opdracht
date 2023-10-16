@@ -4,6 +4,21 @@
              xmlns:local="clr-namespace:WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="TextButton" TargetType="Button">
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="FontFamily" Value="Assets/#Secular One"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="Text" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Assets/#Secular One"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
     </Application.Resources>
 </Application>
