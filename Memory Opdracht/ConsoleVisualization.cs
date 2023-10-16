@@ -72,10 +72,7 @@ public class ConsoleVisualization
 
             if (int.TryParse(userInput, out choice))
             {
-                if (GameService.IsValidCardChoice(choice))
-                {
-                    break; // Exit the loop if a valid choice is given
-                }
+                if (GameService.IsValidCardChoice(choice)) break; // Exit the loop if a valid choice is given
                 else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
             }
             else Console.WriteLine("Ongeldig nummer. Geef een geldig nummer die nog niet omgedraaid is");
