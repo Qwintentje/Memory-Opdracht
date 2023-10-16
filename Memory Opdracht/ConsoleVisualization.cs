@@ -88,11 +88,11 @@ public class ConsoleVisualization
         Console.Clear();
         if (GameService.Game?.Cards == null) throw new Exception("Geen kaarten beschikbaar.");
         //Sort the cards so that they will be printend based on index
-        List<Card>? sortedCards = GameService.Game?.Cards.OrderBy(card => card.Index).ToList();
-        for (int i = 0; i < sortedCards?.Count; i++)
+        //List<Card>? sortedCards = GameService.Game?.Cards.OrderBy(card => card.Index).ToList();
+        for (int i = 0; i < GameService.Game.Cards?.Count; i++)
         {
-            if (sortedCards[i].IsTurned) Console.Write($"[{sortedCards[i].Symbol}] ");
-            else Console.Write($"[{sortedCards[i].Index}] ");
+            if (GameService.Game.Cards[i].IsTurned) Console.Write($"[{GameService.Game.Cards?[i].Symbol}] ");
+            else Console.Write($"[{GameService.Game.Cards?[i].Index}] ");
             if ((i + 1) % GameService.Game?.CardAmount == 0) Console.WriteLine();
         }
     }

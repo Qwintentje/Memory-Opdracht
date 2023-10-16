@@ -54,6 +54,7 @@ public class Game
                 Cards.Add(card2);
             }
         }
+        Cards = Cards.OrderBy(card => card.Index).ToList();
     }
 
     public int GetRandomIndex()
@@ -66,7 +67,4 @@ public class Game
         } while (Cards?.Any(c => c.Index == index) == true);
         return index;
     }
-
-
-
 }
