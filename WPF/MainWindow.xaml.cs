@@ -8,9 +8,10 @@ public partial class MainWindow : Window
     }
     private void PlayButton_Click(object sender, RoutedEventArgs e)
     {
-
+        LobbyWindow lobbyWindow = new LobbyWindow();
+        lobbyWindow.Show();
+        Close();
     }
-
 
     private void LeaderboardButton_Click(object sender, RoutedEventArgs e)
     {

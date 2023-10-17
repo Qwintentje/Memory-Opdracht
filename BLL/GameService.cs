@@ -102,7 +102,8 @@ public static class GameService
                 PlayerName = Game.PlayerName,
                 Score = Game.Score,
                 CardAmount = Game.CardAmount,
-                Attempts = Game.Attempts
+                Attempts = Game.Attempts,
+                Duration = Game.Duration
             };
             db.InsertGame(gameDbModel);
         }

@@ -1,5 +1,14 @@
 ﻿namespace Data;
 
+/*CREATE TABLE `games` (
+  `Id` varchar(500) NOT NULL,
+  `PlayerName` varchar(45) NOT NULL,
+  `Score` double NOT NULL,
+  `Attempts` int (11) NOT NULL,
+  `CardAmount` int (11) NOT NULL,
+  `Duration` int (11) NOT NULL,
+  PRIMARY KEY(`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE = utf8mb4_general_ci*/
 public class Database
 {
     private string connectionString = "Server=localhost;Database=Memory;User ID=root;";
@@ -11,20 +20,21 @@ public class Database
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                using (MySqlCommand command = new MySqlCommand("INSERT INTO Games (Id, PlayerName, Score, Attempts, CardAmount) VALUES (@Id, @PlayerName, @Score, @Attempts, @CardAmount)", connection))
+                using (MySqlCommand command = new MySqlCommand("INSERT INTO Games (Id, PlayerName, Score, Attempts, CardAmount, Duration) VALUES (@Id, @PlayerName, @Score, @Attempts, @CardAmount, @Duration)", connection))
                 {
                     command.Parameters.AddWithValue("@Id", game.Id);
                     command.Parameters.AddWithValue("@PlayerName", game.PlayerName);
                     command.Parameters.AddWithValue("@Score", game.Score);
                     command.Parameters.AddWithValue("@Attempts", game.Attempts);
                     command.Parameters.AddWithValue("@CardAmount", game.CardAmount);
+                    command.Parameters.AddWithValue("@Duration", game.Duration);
                     command.ExecuteNonQuery();
                 }
             }
         }
         catch
         {
-            Console.WriteLine("Er is iets fout met de database, neem contact op met Quinten");
+            throw new Exception("Er is iets fout met de database, neem contact op met Quinten");
         }
     }
     public List<GameDbModel> GetHighscores()
@@ -49,7 +59,8 @@ public class Database
                                 PlayerName = reader.GetString("PlayerName"),
                                 Score = reader.GetInt32("Score"),
                                 Attempts = reader.GetInt32("Attempts"),
-                                CardAmount = reader.GetInt32("CardAmount")
+                                CardAmount = reader.GetInt32("CardAmount"),
+                                Duration = reader.GetInt32("Duration")
                             };
                             games.Add(game);
                         }
@@ -59,7 +70,7 @@ public class Database
         }
         catch
         {
-            Console.WriteLine("Er is iets fout met de database, neem contact op met Quinten");
+            throw new Exception("Er is iets fout met de database, neem contact op met Quinten");
         }
         return games;
     }

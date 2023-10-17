@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPF.LobbyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Memory" Height="640" Width="960" 
+        WindowStartupLocation="CenterScreen" 
+        Icon="Assets\Logo.png"
+        Background="#7fb3ff"
+        WindowStyle="None">
+    <Grid>
+        <TextBlock Text="Spelen" 
+                   Style="{DynamicResource Text}" FontSize="60" HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" Grid.Column="1"/>
+
+        <Button Click="BackButton_Click" 
+                Style="{DynamicResource BackButton}">
+            <Icon:PackIconMaterial Kind="ArrowLeft"
+                                   Width="20"
+                                   Height="20"></Icon:PackIconMaterial>
+        </Button>
+
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Style="{DynamicResource Text}">Naam</TextBlock>
+
+       
+
+       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>

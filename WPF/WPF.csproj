@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Back.png" />
-    <None Remove="Assets\Logo.png" />
+    <None Remove="assets\Back.png" />
+    <None Remove="assets\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Back.png" />
-    <Resource Include="Assets\Logo.png" />
-    <Resource Include="Assets\SecularOne.ttf" />
+    <Resource Include="assets\Back.png" />
+    <Resource Include="assets\Logo.png" />
+    <Resource Include="assets\SecularOne.ttf" />
   </ItemGroup>
 
 </Project>

@@ -15,4 +15,5 @@ public class GameDbModel
     }
     public int Attempts { get; set; }
     public int CardAmount { get; set; }
+    public int Duration { get; set; }
 }
