@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="assets\Back.png" />
     <None Remove="assets\Logo.png" />
   </ItemGroup>
 
@@ -21,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets\Back.png" />
     <Resource Include="assets\Logo.png" />
     <Resource Include="assets\SecularOne.ttf" />
   </ItemGroup>

@@ -1,42 +1,102 @@
-﻿<Window x:Class="WPF.LeaderboardWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        Title="Memory" Height="640" Width="960" 
-        WindowStartupLocation="CenterScreen" 
-        Icon="Assets\Logo.png"
-        Background="#7fb3ff"
-        WindowStyle="None">
+﻿<Window
+    x:Class="WPF.LeaderboardWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Memory"
+    Width="960"
+    Height="640"
+    Background="#7fb3ff"
+    Icon="Assets\Logo.png"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="Leaderboard" Style="{DynamicResource Text}" FontSize="60" HorizontalAlignment="Center" 
-                   VerticalAlignment="Top" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="60"
+            Style="{DynamicResource Text}"
+            Text="Leaderboard" />
 
         <Button Click="BackButton_Click" Style="{DynamicResource BackButton}">
-            <Icon:PackIconMaterial Kind="ArrowLeft" Width="20" Height="20"></Icon:PackIconMaterial>
+            <Icon:PackIconMaterial
+                Width="20"
+                Height="20"
+                Foreground="White"
+                Kind="ArrowLeft" />
         </Button>
 
 
-        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Width="120" Text="Speler" Margin="5" Style="{DynamicResource Text}"/>
-                <TextBlock Width="100" Text="Score" Margin="5" Style="{DynamicResource Text}"/>
-                <TextBlock Width="100" Text="Pogingen" Margin="5" Style="{DynamicResource Text}"/>
-                <TextBlock Width="100" Text="Kaarten" Margin="5" Style="{DynamicResource Text}"/>
-                <TextBlock Width="100" Text="Tijd (s)" Margin="5" Style="{DynamicResource Text}"/>
+        <WrapPanel
+            Margin="0,50,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+            <StackPanel Margin="0,5" Orientation="Horizontal">
+                <TextBlock
+                    Width="120"
+                    Margin="5"
+                    Style="{DynamicResource Text}"
+                    Text="Speler" />
+                <TextBlock
+                    Width="100"
+                    Margin="5"
+                    Style="{DynamicResource Text}"
+                    Text="Score" />
+                <TextBlock
+                    Width="100"
+                    Margin="5"
+                    Style="{DynamicResource Text}"
+                    Text="Pogingen" />
+                <TextBlock
+                    Width="100"
+                    Margin="5"
+                    Style="{DynamicResource Text}"
+                    Text="Kaarten" />
+                <TextBlock
+                    Width="100"
+                    Margin="5"
+                    Style="{DynamicResource Text}"
+                    Text="Tijd (s)" />
             </StackPanel>
 
             <ItemsControl ItemsSource="{Binding}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,5">
-                            <TextBlock Width="120" Text="{Binding PlayerName}" Margin="5" Style="{DynamicResource Text}" FontSize="15"/>
-                            <TextBlock Width="100" Text="{Binding Score}" Margin="5" Style="{DynamicResource Text}" FontSize="15"/>
-                            <TextBlock Width="100" Text="{Binding Attempts}" Margin="5" Style="{DynamicResource Text}" FontSize="15"/>
-                            <TextBlock Width="100" Text="{Binding CardAmount}" Margin="5" Style="{DynamicResource Text}" FontSize="15"/>
-                            <TextBlock Width="100" Text="{Binding Duration}" Margin="5" Style="{DynamicResource Text}" FontSize="15"/>
+                        <StackPanel Margin="0,5" Orientation="Horizontal">
+                            <TextBlock
+                                Width="120"
+                                Margin="5"
+                                FontSize="15"
+                                Style="{DynamicResource Text}"
+                                Text="{Binding PlayerName}" />
+                            <TextBlock
+                                Width="100"
+                                Margin="5"
+                                FontSize="15"
+                                Style="{DynamicResource Text}"
+                                Text="{Binding Score}" />
+                            <TextBlock
+                                Width="100"
+                                Margin="5"
+                                FontSize="15"
+                                Style="{DynamicResource Text}"
+                                Text="{Binding Attempts}" />
+                            <TextBlock
+                                Width="100"
+                                Margin="5"
+                                FontSize="15"
+                                Style="{DynamicResource Text}"
+                                Text="{Binding CardAmount}" />
+                            <TextBlock
+                                Width="100"
+                                Margin="5"
+                                FontSize="15"
+                                Style="{DynamicResource Text}"
+                                Text="{Binding Duration}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

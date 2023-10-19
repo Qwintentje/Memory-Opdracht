@@ -1,43 +1,153 @@
-﻿<Window x:Class="WPF.LobbyWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        Title="Memory" Height="640" Width="960" 
-        WindowStartupLocation="CenterScreen" 
-        Icon="Assets\Logo.png"
-        Background="#7fb3ff"
-        WindowStyle="None">
+﻿<Window
+    x:Class="WPF.LobbyWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Memory"
+    Width="960"
+    Height="640"
+    Background="#7fb3ff"
+    Icon="Assets\Logo.png"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="Spelen" 
-                   Style="{DynamicResource Text}" FontSize="60" HorizontalAlignment="Center" 
-                   VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="60"
+            Style="{DynamicResource Text}"
+            Text="Spelen" />
 
-        <Button Click="BackButton_Click" 
-                Style="{DynamicResource BackButton}">
-            <Icon:PackIconMaterial Kind="ArrowLeft"
-                                   Width="20"
-                                   Height="20"></Icon:PackIconMaterial>
+        <Button Click="BackButton_Click" Style="{DynamicResource BackButton}">
+            <Icon:PackIconMaterial
+                Width="20"
+                Height="20"
+                Foreground="White"
+                Kind="ArrowLeft" />
+        </Button>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FocusManager.FocusedElement="{Binding ElementName=name}">
+            <Label
+                x:Name="NameLable"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Naam"
+                FontFamily="assets/#Secular One"
+                FontSize="30"
+                FontWeight="Bold"
+                Foreground="White" />
+            <DockPanel>
+                <Button
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    Background="#D6EBFF"
+                    BorderThickness="0"
+                    DockPanel.Dock="Left"
+                    Focusable="False">
+                    <Icon:PackIconMaterial
+                        Width="25"
+                        Height="25"
+                        Foreground="#47A3FF"
+                        Kind="Human" />
+                </Button>
+                <TextBox
+                    x:Name="name"
+                    Width="260"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#D6EBFF"
+                    BorderThickness="2"
+                    FontFamily="assets/#Secular One"
+                    FontSize="20"
+                    TextChanged="NameTextBox_TextChanged" />
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FocusManager.FocusedElement="{Binding ElementName=cardAmount}">
+            <Label
+                x:Name="CardAmountLable"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Aantal paren"
+                FontFamily="assets/#Secular One"
+                FontSize="30"
+                FontWeight="Bold"
+                Foreground="White" />
+            <DockPanel>
+                <Button
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    Background="#D6EBFF"
+                    BorderThickness="0"
+                    DockPanel.Dock="Left"
+                    Focusable="False">
+                    <Icon:PackIconMaterial
+                        Width="25"
+                        Height="25"
+                        Foreground="#47A3FF"
+                        Kind="CardsClub" />
+                </Button>
+                <TextBox
+                    x:Name="cardAmount"
+                    Width="260"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#D6EBFF"
+                    BorderThickness="2"
+                    FontFamily="assets/#Secular One"
+                    FontSize="20"
+                    TextChanged="CardAmountTextBox_TextChanged" />
+            </DockPanel>
+        </StackPanel>
+
+        <Button
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="200"
+            Height="75"
+            Background="#47A3FF"
+            BorderThickness="0"
+            Click="PlayButton_Click"
+            FontFamily="assets/#Secular One"
+            FontSize="20"
+            Foreground="White">
+            Spelen
         </Button>
 
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Style="{DynamicResource Text}">Naam</TextBlock>
 
-       
-
-       
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
     </Grid>
 </Window>
