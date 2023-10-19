@@ -78,6 +78,7 @@ public static class GameService
     {
         if (Game != null)
         {
+            //Did this in multible steps because in one step it became null idk why tell me
             double first = (Game.CardAmount * 2) * (Game.CardAmount * 2);
             double second = Game.Duration * Game.Attempts;
             double score = (first / second) * 1000;
