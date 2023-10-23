@@ -120,8 +120,26 @@
             </DockPanel>
         </StackPanel>
 
-        <Button
+        <StackPanel
             Grid.Row="3"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
+            <Label
+                x:Name="uploadLable"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="Upload je eigen afbeeldingen"
+                FontFamily="assets/#Secular One"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White" />
+            <Button Click="UploadImageButton_Click" Content="Upload Image" />
+
+        </StackPanel>
+
+        <Button
+            Grid.Row="5"
             Grid.Column="1"
             Width="200"
             Height="75"
@@ -134,6 +152,11 @@
             Spelen
         </Button>
 
+        <WrapPanel
+            x:Name="imageWrapPanel"
+            Grid.Row="4"
+            Grid.Column="1"
+            Orientation="Horizontal" />
 
 
         <Grid.ColumnDefinitions>
@@ -143,6 +166,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />

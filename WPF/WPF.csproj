@@ -54,4 +54,8 @@
     <Resource Include="assets\SecularOne.ttf" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\uploadedimages\" />
+  </ItemGroup>
+
 </Project>

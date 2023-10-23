@@ -77,6 +77,45 @@ public class Game : INotifyPropertyChanged
         Cards = Cards.OrderBy(card => card.Index).ToList();
     }
 
+    public void SetCards(List<string> uploadedImages)
+    {
+        Cards = new List<Card>(CardAmount * 2);
+        for (int i = 0; i < CardAmount * 2; i++)
+        {
+            if (i % 2 == 0) //For each set of 2 cards make them a pair
+            {
+                Card card1 = new Card(i);
+                Card card2 = new Card(i);
+
+                card1.MatchingCard = card2; //Set the 2 cards to a pair
+                card2.MatchingCard = card1;
+
+
+                card1.Index = GetRandomIndex();
+                Cards.Add(card1);
+
+                card2.Index = GetRandomIndex();
+                Cards.Add(card2);
+                string path = "";
+                if (uploadedImages.Count > 0)
+                {
+                    path = uploadedImages.First();
+                    uploadedImages.Remove(path);
+                }
+                else
+                {
+                    path = GetRandomImagePath();
+                }
+                card1.imagePath = path;
+                card2.imagePath = path;
+
+
+
+            }
+        }
+        Cards = Cards.OrderBy(card => card.Index).ToList();
+    }
+
     private string GetRandomImagePath()
     {
         Random random = new Random();

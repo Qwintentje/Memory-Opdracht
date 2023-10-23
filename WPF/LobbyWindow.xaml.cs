@@ -2,12 +2,14 @@
 
 public partial class LobbyWindow : Window
 {
-    static readonly LinearGradientBrush green = new(Color.FromRgb(233, 255, 233), Color.FromRgb(199, 255, 159), 0);
-    static readonly LinearGradientBrush red = new(Color.FromRgb(255, 191, 195), Color.FromRgb(255, 0, 0), 0);
+    private static readonly LinearGradientBrush green = new(Color.FromRgb(233, 255, 233), Color.FromRgb(199, 255, 159), 0);
+    private static readonly LinearGradientBrush red = new(Color.FromRgb(255, 191, 195), Color.FromRgb(255, 0, 0), 0);
+    private List<string> uploadedImages = new List<string>();
 
     public LobbyWindow()
     {
         InitializeComponent();
+        FileService.ClearIconsDirectory();
     }
 
     private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -24,7 +26,7 @@ public partial class LobbyWindow : Window
         if (CheckName(nameInput) && CheckCardAmount(amountInput))
         {
             int.TryParse(amountInput, out int cardAmount);
-            GameWindow gameWindow = new GameWindow(nameInput, cardAmount);
+            GameWindow gameWindow = new GameWindow(nameInput, cardAmount, uploadedImages);
             gameWindow.Show();
             Close();
         }
@@ -64,5 +66,41 @@ public partial class LobbyWindow : Window
             }
         }
         return false;
+    }
+
+
+    private void UploadImageButton_Click(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            Title = "Select an Image",
+            Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            string selectedImagePath = openFileDialog.FileName;
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string destinationDirectory = Path.Combine(baseDirectory, "assets", "uploadedimages");
+
+            var succes = FileService.CopyImageToDestination(selectedImagePath, destinationDirectory, selectedImagePath);
+
+            if (succes)
+            {
+                // Create a new Image control
+                Image newImage = new Image
+                {
+                    Width = 100, // Set your desired width
+                    Height = 100, // Set your desired height
+                    Margin = new Thickness(5), // Set your desired margin
+                    Source = new BitmapImage(new Uri(selectedImagePath)),
+                };
+
+                // Add the new Image control to the WrapPanel
+                imageWrapPanel.Children.Add(newImage);
+
+                uploadedImages.Add(selectedImagePath);
+            }
+        }
     }
 }

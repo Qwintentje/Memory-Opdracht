@@ -12,11 +12,11 @@ public static class GameService
         Game.SetCards();
         return playerName;
     }
-    public static void Initialize(string playerName, int cardAmount)
+    public static void Initialize(string playerName, int cardAmount, List<string> uploadedImages)
     {
         if (cardAmount < 4) cardAmount = 4;
         Game = new Game(playerName, cardAmount);
-        Game.SetCards();
+        Game.SetCards(uploadedImages);
     }
 
     public static void Start()

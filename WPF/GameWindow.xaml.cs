@@ -14,10 +14,10 @@ public partial class GameWindow : Window
 
     private Button? firstButton { get; set; }
     private Button? secondButton { get; set; }
-    public GameWindow(string name, int cardAmount)
+    public GameWindow(string name, int cardAmount, List<string> uploadedImages)
     {
         InitializeComponent();
-        GameService.Initialize(name, cardAmount);
+        GameService.Initialize(name, cardAmount, uploadedImages);
         game = GameService.Game; //Set the game property to the same memory reference as the GameService.Game
         DataContext = game;
         GenerateCards();
