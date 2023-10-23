@@ -3,14 +3,7 @@
 public partial class GameWindow : Window
 {
     private Game? game { get; set; }
-    private Image defaultCardImage = new Image
-    {
-        //PC
-        //Source = new BitmapImage(new Uri("C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\Logo.png")),
-        //LAPTOP
-        Source = new BitmapImage(new Uri("C:\\Users\\quint\\Documents\\Github\\Memory Opdracht\\WPF\\assets\\Logo.png")),
-        Stretch = Stretch.Uniform,
-    };
+    private Image defaultCardImage { get; set; }
 
     private Card? firstCard { get; set; }
     private Card? secondCard { get; set; }
@@ -20,6 +13,13 @@ public partial class GameWindow : Window
     public GameWindow(string name, int cardAmount, List<string> uploadedImages)
     {
         InitializeComponent();
+        string basePath = AppDomain.CurrentDomain.BaseDirectory;
+        string imagePath = Path.Combine(basePath, $"assets/Logo.png");
+        defaultCardImage = new Image
+        {
+            Source = new BitmapImage(new Uri(imagePath)),
+            Stretch = Stretch.Uniform,
+        };
         GameService.Initialize(name, cardAmount, uploadedImages);
         game = GameService.Game; //Set the game property to the same memory reference as the GameService.Game
         DataContext = game;

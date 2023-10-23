@@ -1,5 +1,4 @@
-﻿
-namespace WPF;
+﻿namespace WPF;
 public partial class LeaderboardWindow : Window
 {
     private List<GameDbModel> leaderboard;

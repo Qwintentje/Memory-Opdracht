@@ -8,7 +8,7 @@
     Width="960"
     Height="640"
     Background="#7fb3ff"
-    Icon="Assets\Logo.png"
+    Icon="Assets\Logo1.png"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

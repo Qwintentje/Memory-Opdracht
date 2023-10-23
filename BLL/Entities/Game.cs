@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Business.Entities;
+﻿namespace Business.Entities;
 public class Game : INotifyPropertyChanged
 {
     public string Id { get; set; }
@@ -108,9 +106,6 @@ public class Game : INotifyPropertyChanged
                 }
                 card1.imagePath = path;
                 card2.imagePath = path;
-
-
-
             }
         }
         Cards = Cards.OrderBy(card => card.Index).ToList();
@@ -126,10 +121,8 @@ public class Game : INotifyPropertyChanged
         } while (usedImageIndexes.Any(e => e == index) == true);
         usedImageIndexes.Add(index);
 
-        //PC
-        //return $"C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\icons\\Icon ({index}).png"; ;
-        //LAPTOP
-        return $"C:\\Users\\quint\\Documents\\Github\\Memory Opdracht\\WPF\\assets\\icons\\Icon ({index}).png";
+        string basePath = AppDomain.CurrentDomain.BaseDirectory;
+        return Path.Combine(basePath, $"assets/icons/Icon ({index}).png");
     }
 
     private int GetRandomIndex()
