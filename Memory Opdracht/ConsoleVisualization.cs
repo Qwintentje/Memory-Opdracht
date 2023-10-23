@@ -35,7 +35,7 @@ public class ConsoleVisualization
             Card secondCard = GameService.GetCard(secondChoice);
             secondCard.IsTurned = true;
             PrintGame();
-            GameService.Game.Attempts++;
+            if (GameService.Game != null) GameService.Game.Attempts++;
             if (!GameService.CheckMatch(firstCard, secondCard))
             {
                 Thread.Sleep(2000);

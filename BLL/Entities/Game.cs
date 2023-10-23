@@ -32,7 +32,7 @@ public class Game : INotifyPropertyChanged
     public GameStatus Status { get; set; } = GameStatus.Unknown;
     private List<int> usedImageIndexes = new List<int>();
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
     {
