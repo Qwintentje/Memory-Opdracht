@@ -49,7 +49,6 @@ public static class GameService
         {
             return true;
         }
-        //Thread.Sleep(2000);
         card1.IsTurned = false;
         card2.IsTurned = false;
         return false;

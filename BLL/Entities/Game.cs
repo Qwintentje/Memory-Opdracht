@@ -42,7 +42,7 @@ public class Game : INotifyPropertyChanged
     public Game(string? playerName, int cardAmount)
     {
         PlayerName = playerName == null ? "Speler" : playerName;
-        CardAmount = cardAmount < 0 ? 4 : cardAmount;
+        CardAmount = cardAmount < 0 ? 5 : cardAmount;
         Status = GameStatus.Pending;
         Id = Guid.NewGuid().ToString();
     }

@@ -4,10 +4,8 @@ public partial class GameWindow : Window
 {
     private Game? game { get; set; }
     private Image defaultCardImage { get; set; }
-
     private Card? firstCard { get; set; }
     private Card? secondCard { get; set; }
-
     private Button? firstButton { get; set; }
     private Button? secondButton { get; set; }
     public GameWindow(string name, int cardAmount, List<string> uploadedImages)
@@ -22,7 +20,7 @@ public partial class GameWindow : Window
         };
         GameService.Initialize(name, cardAmount, uploadedImages);
         game = GameService.Game; //Set the game property to the same memory reference as the GameService.Game
-        DataContext = game;
+        DataContext = game; //Set the datacontext to show attempts in a game
         GenerateCards();
     }
 
@@ -30,7 +28,7 @@ public partial class GameWindow : Window
     {
         if (game?.Cards != null)
         {
-            foreach (var card in game.Cards)
+            foreach (var card in game.Cards) //Loop through all cards and make a button for them with a default image
             {
                 Button cardButton = new Button
                 {
@@ -46,7 +44,7 @@ public partial class GameWindow : Window
                     Source = defaultCardImage.Source,
                     Stretch = defaultCardImage.Stretch,
                 };
-                RenderOptions.SetBitmapScalingMode(cardImage, BitmapScalingMode.HighQuality);
+                RenderOptions.SetBitmapScalingMode(cardImage, BitmapScalingMode.HighQuality); //Set quality to high
                 cardButton.Content = cardImage;
                 cardButton.Click += CardButton_Click;
                 cardsContainer.Items.Add(cardButton);
@@ -56,14 +54,14 @@ public partial class GameWindow : Window
 
     private void CardButton_Click(object sender, RoutedEventArgs e)
     {
-        if (game.Status == GameStatus.Pending)
+        if (game.Status == GameStatus.Pending) //If a card is clicked when game is not started, start it
         {
             GameService.Start();
             guideTextBlock.Visibility = Visibility.Collapsed;
         }
-        if (secondButton != null && firstButton != null)
+        if (secondButton != null && firstButton != null) //If both buttons have been pressed already
         {
-            if (!GameService.CheckMatch(firstCard, secondCard))
+            if (!GameService.CheckMatch(firstCard, secondCard)) //If no match, change button to default image
             {
                 firstButton.Content = GetDefaultImage();
                 secondButton.Content = GetDefaultImage();
@@ -89,7 +87,7 @@ public partial class GameWindow : Window
                 secondCard = card;
                 secondButton = button;
             }
-            else return;
+            else return; //Return if 2 cards are turned but user clicked another card
 
             if (secondCard != null)
             {
@@ -124,7 +122,7 @@ public partial class GameWindow : Window
     {
         Image cardImage = new Image
         {
-            Source = new BitmapImage(new Uri(card.imagePath)),
+            Source = new BitmapImage(new Uri(card.imagePath)), //Get the image of the card his path
             Stretch = Stretch.Uniform,
         };
         RenderOptions.SetBitmapScalingMode(cardImage, BitmapScalingMode.HighQuality);
@@ -144,7 +142,7 @@ public partial class GameWindow : Window
         {
             if (item is Button cardButton)
             {
-                cardButton.Click -= CardButton_Click;
+                cardButton.Click -= CardButton_Click; //descripe from the event so that the buttons won't do anything
             }
         }
     }

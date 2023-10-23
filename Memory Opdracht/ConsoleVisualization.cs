@@ -38,6 +38,7 @@ public class ConsoleVisualization
             GameService.Game.Attempts++;
             if (!GameService.CheckMatch(firstCard, secondCard))
             {
+                Thread.Sleep(2000);
                 firstCard.IsTurned = false;
                 secondCard.IsTurned = false;
             }

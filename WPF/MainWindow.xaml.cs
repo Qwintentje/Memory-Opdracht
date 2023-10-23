@@ -2,10 +2,8 @@
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
-    {
-        InitializeComponent();
-    }
+    public MainWindow() => InitializeComponent();
+
     private void PlayButton_Click(object sender, RoutedEventArgs e)
     {
         LobbyWindow lobbyWindow = new LobbyWindow();
