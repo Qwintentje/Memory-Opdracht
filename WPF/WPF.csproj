@@ -8,19 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="assets\icons\**" />
     <Compile Remove="assets\uploadedimages\**" />
-    <EmbeddedResource Remove="assets\icons\**" />
     <EmbeddedResource Remove="assets\uploadedimages\**" />
-    <None Remove="assets\icons\**" />
     <None Remove="assets\uploadedimages\**" />
-    <Page Remove="assets\icons\**" />
     <Page Remove="assets\uploadedimages\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="assets\Logo.png" />
-    <None Remove="assets\Logo1.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets\Logo1.png" />
+    <Resource Include="assets\Logo.png" />
     <Resource Include="assets\SecularOne.ttf" />
   </ItemGroup>
 

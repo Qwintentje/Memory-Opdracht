@@ -11,8 +11,8 @@ public partial class GameWindow : Window
     public GameWindow(string name, int cardAmount, List<string> uploadedImages)
     {
         InitializeComponent();
-        string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        string imagePath = Path.Combine(basePath, $"assets\\Logo.png");
+        string iconsFolderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "assets"));
+        string imagePath = Path.Combine(iconsFolderPath, $"Logo.png");
         defaultCardImage = new Image
         {
             Source = new BitmapImage(new Uri(imagePath)),

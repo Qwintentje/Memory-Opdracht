@@ -8,7 +8,7 @@
     Width="960"
     Height="640"
     Background="#7fb3ff"
-    Icon="Assets\Logo1.png"
+    Icon="Assets\Logo.png"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -18,7 +18,7 @@
             Height="200"
             Margin="0,0,0,0"
             VerticalAlignment="Top"
-            Source="Assets/Logo1.png" />
+            Source="Assets/Logo.png" />
         <TextBlock
             Margin="0,150,0,0"
             HorizontalAlignment="Center"

@@ -121,8 +121,10 @@ public class Game : INotifyPropertyChanged
         } while (usedImageIndexes.Any(e => e == index) == true);
         usedImageIndexes.Add(index);
 
-        string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        return Path.Combine(basePath, $"assets/icons/Icon ({index}).png");
+
+        string iconsFolderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "assets", "icons"));
+        string iconFilePath = Path.Combine(iconsFolderPath, $"Icon ({index}).png");
+        return iconFilePath;
     }
 
     private int GetRandomIndex()
