@@ -75,7 +75,7 @@ public partial class GameWindow : Window
         }
         if (sender is Button button && button.Tag is Card card && game.Status == GameStatus.InProgress && !card.IsTurned)
         {
-            SetCardImage(card, button);
+            SetCardIcon(card, button);
             card.IsTurned = true;
             if (firstCard == null)
             {
@@ -101,6 +101,7 @@ public partial class GameWindow : Window
                         guideTextBlock.Visibility = Visibility.Collapsed;
                         matchTextBlock.Visibility = Visibility.Collapsed;
                         finishTextBlock.Text = $"Je hebt gewonnen met een score van {game.Score} in maar liefst {game.Duration} seconden";
+                        StoreGame();
                         DisableButtons();
                     }
                 }
@@ -118,7 +119,7 @@ public partial class GameWindow : Window
         return image;
     }
 
-    private void SetCardImage(Card card, Button button)
+    private void SetCardIcon(Card card, Button button)
     {
         Image cardImage = new Image
         {
@@ -142,8 +143,22 @@ public partial class GameWindow : Window
         {
             if (item is Button cardButton)
             {
-                cardButton.Click -= CardButton_Click; //descripe from the event so that the buttons won't do anything
+                cardButton.Click -= CardButton_Click; //describe from the event so that the buttons won't do anything
             }
         }
+    }
+    private void StoreGame()
+    {
+        Database db = new Database();
+        GameDbModel gameDbModel = new GameDbModel()
+        {
+            Id = GameService.Game.Id,
+            PlayerName = GameService.Game.PlayerName,
+            Score = GameService.Game.Score,
+            CardAmount = GameService.Game.CardAmount,
+            Attempts = GameService.Game.Attempts,
+            Duration = GameService.Game.Duration
+        };
+        db.InsertGame(gameDbModel);
     }
 }

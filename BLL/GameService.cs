@@ -5,13 +5,14 @@ public static class GameService
     public static Game? Game { get; set; }
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
     private static int defaultCardAmount = 5;
-
+    //Console initialize
     public static string Initialize(string playerName)
     {
         Game = new Game(playerName, defaultCardAmount);
         Game.SetCards();
         return playerName;
     }
+    //WPF Initialize
     public static void Initialize(string playerName, int cardAmount, List<string> uploadedImages)
     {
         if (cardAmount < 4) cardAmount = 4;
@@ -69,7 +70,7 @@ public static class GameService
 
     }
 
-    public static double CalculateScore()
+    private static double CalculateScore()
     {
         if (Game != null)
         {
@@ -83,7 +84,7 @@ public static class GameService
         else throw new Exception("Game not found");
     }
 
-    public static void EndGame()
+    private static void EndGame()
     {
         if (Game != null)
         {
@@ -91,17 +92,6 @@ public static class GameService
             stopwatch.Stop();
             Game.Duration = (int)stopwatch.Elapsed.TotalSeconds;
             CalculateScore();
-            Database db = new Database();
-            GameDbModel gameDbModel = new GameDbModel()
-            {
-                Id = Game.Id,
-                PlayerName = Game.PlayerName,
-                Score = Game.Score,
-                CardAmount = Game.CardAmount,
-                Attempts = Game.Attempts,
-                Duration = Game.Duration
-            };
-            db.InsertGame(gameDbModel);
         }
         else throw new Exception("Game not found");
     }

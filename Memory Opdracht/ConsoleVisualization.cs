@@ -49,6 +49,17 @@ public class ConsoleVisualization
             }
             if (GameService.CheckGameFinished())
             {
+                Database db = new Database();
+                GameDbModel gameDbModel = new GameDbModel()
+                {
+                    Id = GameService.Game.Id,
+                    PlayerName = GameService.Game.PlayerName,
+                    Score = GameService.Game.Score,
+                    CardAmount = GameService.Game.CardAmount,
+                    Attempts = GameService.Game.Attempts,
+                    Duration = GameService.Game.Duration
+                };
+                db.InsertGame(gameDbModel);
                 Console.WriteLine("Game is afgelopen");
                 if (GameService.Game != null)
                 {
