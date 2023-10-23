@@ -1,14 +1,20 @@
 ﻿namespace Data;
 
-/*CREATE TABLE `games` (
+/*
+CREATE DATABASE IF NOT EXISTS Memory;
+
+USE Memory;
+
+CREATE TABLE IF NOT EXISTS `games` (
   `Id` varchar(500) NOT NULL,
   `PlayerName` varchar(45) NOT NULL,
   `Score` double NOT NULL,
-  `Attempts` int (11) NOT NULL,
-  `CardAmount` int (11) NOT NULL,
-  `Duration` int (11) NOT NULL,
+  `Attempts` int NOT NULL,
+  `CardAmount` int NOT NULL,
+  `Duration` int NOT NULL,
   PRIMARY KEY(`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE = utf8mb4_general_ci*/
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+*/
 public class Database
 {
     private string connectionString = "Server=localhost;Database=Memory;User ID=root;";
