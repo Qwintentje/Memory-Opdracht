@@ -21,7 +21,7 @@ public class ConsoleVisualization
         Start();
     }
 
-    public static void Start()
+    private static void Start()
     {
         while (true)
         {
@@ -71,7 +71,7 @@ public class ConsoleVisualization
             }
         }
     }
-    public static int GetChoice()
+    private static int GetChoice()
     {
         int choice;
 
