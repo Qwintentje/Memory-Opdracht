@@ -12,7 +12,7 @@ public partial class GameWindow : Window
     {
         InitializeComponent();
         string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        string imagePath = Path.Combine(basePath, $"assets/Logo.png");
+        string imagePath = Path.Combine(basePath, $"assets\\Logo.png");
         defaultCardImage = new Image
         {
             Source = new BitmapImage(new Uri(imagePath)),
@@ -122,7 +122,7 @@ public partial class GameWindow : Window
     {
         Image cardImage = new Image
         {
-            Source = new BitmapImage(new Uri(card.imagePath)), //Get the image of the card his path
+            Source = new BitmapImage(new Uri(card.imagePath)),
             Stretch = Stretch.Uniform,
         };
         RenderOptions.SetBitmapScalingMode(cardImage, BitmapScalingMode.HighQuality);
