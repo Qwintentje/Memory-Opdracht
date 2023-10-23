@@ -7,6 +7,7 @@ public class Card
     public string Symbol { get; set; } = "";
     //public afbeelding
     public bool IsTurned { get; set; }
+    public string imagePath { get; set; }
 
     public Card(int i)
     {

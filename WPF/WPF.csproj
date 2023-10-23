@@ -8,6 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\icons\Icon %281%29.png" />
+    <None Remove="assets\icons\Icon %2810%29.png" />
+    <None Remove="assets\icons\Icon %2811%29.png" />
+    <None Remove="assets\icons\Icon %2812%29.png" />
+    <None Remove="assets\icons\Icon %2813%29.png" />
+    <None Remove="assets\icons\Icon %2814%29.png" />
+    <None Remove="assets\icons\Icon %2815%29.png" />
+    <None Remove="assets\icons\Icon %282%29.png" />
+    <None Remove="assets\icons\Icon %283%29.png" />
+    <None Remove="assets\icons\Icon %284%29.png" />
+    <None Remove="assets\icons\Icon %285%29.png" />
+    <None Remove="assets\icons\Icon %286%29.png" />
+    <None Remove="assets\icons\Icon %287%29.png" />
+    <None Remove="assets\icons\Icon %288%29.png" />
+    <None Remove="assets\icons\Icon %289%29.png" />
     <None Remove="assets\Logo.png" />
   </ItemGroup>
 
@@ -20,6 +35,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\icons\Icon (1).png" />
+    <Resource Include="assets\icons\Icon (10).png" />
+    <Resource Include="assets\icons\Icon (11).png" />
+    <Resource Include="assets\icons\Icon (12).png" />
+    <Resource Include="assets\icons\Icon (13).png" />
+    <Resource Include="assets\icons\Icon (14).png" />
+    <Resource Include="assets\icons\Icon (15).png" />
+    <Resource Include="assets\icons\Icon (2).png" />
+    <Resource Include="assets\icons\Icon (3).png" />
+    <Resource Include="assets\icons\Icon (4).png" />
+    <Resource Include="assets\icons\Icon (5).png" />
+    <Resource Include="assets\icons\Icon (6).png" />
+    <Resource Include="assets\icons\Icon (7).png" />
+    <Resource Include="assets\icons\Icon (8).png" />
+    <Resource Include="assets\icons\Icon (9).png" />
     <Resource Include="assets\Logo.png" />
     <Resource Include="assets\SecularOne.ttf" />
   </ItemGroup>

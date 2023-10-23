@@ -35,7 +35,7 @@ public class ConsoleVisualization
             Card secondCard = GameService.GetCard(secondChoice);
             secondCard.IsTurned = true;
             PrintGame();
-
+            GameService.Game.Attempts++;
             if (!GameService.CheckMatch(firstCard, secondCard))
             {
                 firstCard.IsTurned = false;
@@ -103,14 +103,15 @@ public class ConsoleVisualization
             int scoreWidth = 10;
             int attemptsWidth = 15;
             int cardAmountWidth = 20;
+            int durationWidth = 20;
 
-            Console.WriteLine($"{FormatColumn("Speler", playerNameWidth)}{FormatColumn("Score", scoreWidth)}{FormatColumn("Pogingen", attemptsWidth)}{FormatColumn("Aantal kaarten", cardAmountWidth)}");
-            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine($"{FormatColumn("Speler", playerNameWidth)}{FormatColumn("Score", scoreWidth)}{FormatColumn("Pogingen", attemptsWidth)}{FormatColumn("Aantal kaarten", cardAmountWidth)}{FormatColumn("Tijd (s)", durationWidth)}");
+            Console.WriteLine("--------------------------------------------------------------------------------");
             foreach (var game in Highscores)
             {
-                Console.WriteLine($"{FormatColumn(game.PlayerName, playerNameWidth)}{FormatColumn(game.Score.ToString(), scoreWidth)}{FormatColumn(game.Attempts.ToString(), attemptsWidth)}{FormatColumn(game.CardAmount.ToString(), cardAmountWidth)}");
+                Console.WriteLine($"{FormatColumn(game.PlayerName, playerNameWidth)}{FormatColumn(game.Score.ToString(), scoreWidth)}{FormatColumn(game.Attempts.ToString(), attemptsWidth)}{FormatColumn(game.CardAmount.ToString(), cardAmountWidth)}{FormatColumn(game.Duration.ToString(), durationWidth)}");
             }
-            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------------");
         }
     }
 

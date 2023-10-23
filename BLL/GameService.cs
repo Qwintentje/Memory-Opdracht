@@ -6,21 +6,18 @@ public static class GameService
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
     private static int defaultCardAmount = 5;
 
-    public static string Initialize()
+    public static string Initialize(string playerName)
     {
-        Console.WriteLine("Vul een naam in...");
-        string? playerName = Console.ReadLine();
-        if (!string.IsNullOrEmpty(playerName)) playerName = playerName.ToString(); else playerName = "Speler";
         Game = new Game(playerName, defaultCardAmount);
         Game.SetCards();
         return playerName;
     }
-    /*    public static void Initialize(string playerName, int cardAmount, plaatjes)
-        {
-    if(cardamount <5 )cardAmount = 5;
-            game = new Game(playerName, cardAmount);
-            game.SetCards(plaatjes);
-        }*/
+    public static void Initialize(string playerName, int cardAmount)
+    {
+        if (cardAmount < 4) cardAmount = 4;
+        Game = new Game(playerName, cardAmount);
+        Game.SetCards();
+    }
 
     public static void Start()
     {
@@ -48,12 +45,11 @@ public static class GameService
 
     public static bool CheckMatch(Card card1, Card card2)
     {
-        if (Game != null) Game.Attempts++;
         if (card1.MatchingCard == card2 && card2.MatchingCard == card1)
         {
             return true;
         }
-        Thread.Sleep(2000);
+        //Thread.Sleep(2000);
         card1.IsTurned = false;
         card2.IsTurned = false;
         return false;

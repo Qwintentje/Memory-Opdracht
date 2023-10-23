@@ -1,5 +1,7 @@
-﻿namespace Business.Entities;
-public class Game
+﻿using System.ComponentModel;
+
+namespace Business.Entities;
+public class Game : INotifyPropertyChanged
 {
     public string Id { get; set; }
     public string PlayerName { get; set; }
@@ -12,15 +14,37 @@ public class Game
             score = (int)value;
         }
     }
-    public int Attempts { get; set; }
+    private int attempts;
+
+    public int Attempts
+    {
+        get { return attempts; }
+        set
+        {
+            if (attempts != value)
+            {
+                attempts = value;
+                OnPropertyChanged(nameof(Attempts));
+            }
+        }
+    }
     public int CardAmount { get; set; }
     public List<Card> Cards { get; set; } = new List<Card>();
     public int Duration { get; set; }
     public GameStatus Status { get; set; } = GameStatus.Unknown;
+    private List<int> usedImageIndexes = new List<int>();
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
     public Game(string? playerName, int cardAmount)
     {
         PlayerName = playerName == null ? "Speler" : playerName;
-        CardAmount = cardAmount < 0 ? 5 : cardAmount;
+        CardAmount = cardAmount < 0 ? 4 : cardAmount;
         Status = GameStatus.Pending;
         Id = Guid.NewGuid().ToString();
     }
@@ -38,17 +62,34 @@ public class Game
                 card1.MatchingCard = card2; //Set the 2 cards to a pair
                 card2.MatchingCard = card1;
 
+
                 card1.Index = GetRandomIndex();
                 Cards.Add(card1);
 
                 card2.Index = GetRandomIndex();
                 Cards.Add(card2);
+
+                string path = GetRandomImagePath();
+                card1.imagePath = path;
+                card2.imagePath = path;
             }
         }
         Cards = Cards.OrderBy(card => card.Index).ToList();
     }
 
-    public int GetRandomIndex()
+    private string GetRandomImagePath()
+    {
+        Random random = new Random();
+        int index;
+        do //this until the index is a random number between 1 and 15
+        {
+            index = random.Next(1, 16);
+        } while (usedImageIndexes.Any(e => e == index) == true);
+        usedImageIndexes.Add(index);
+        return $"C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\icons\\Icon ({index}).png"; ;
+    }
+
+    private int GetRandomIndex()
     {
         Random random = new Random();
         int index;
