@@ -125,7 +125,11 @@ public class Game : INotifyPropertyChanged
             index = random.Next(1, 16);
         } while (usedImageIndexes.Any(e => e == index) == true);
         usedImageIndexes.Add(index);
-        return $"C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\icons\\Icon ({index}).png"; ;
+
+        //PC
+        //return $"C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\icons\\Icon ({index}).png"; ;
+        //LAPTOP
+        return $"C:\\Users\\quint\\Documents\\Github\\Memory Opdracht\\WPF\\assets\\icons\\Icon ({index}).png";
     }
 
     private int GetRandomIndex()

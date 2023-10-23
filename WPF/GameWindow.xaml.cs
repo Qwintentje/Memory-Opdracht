@@ -5,7 +5,10 @@ public partial class GameWindow : Window
     private Game? game { get; set; }
     private Image defaultCardImage = new Image
     {
-        Source = new BitmapImage(new Uri("C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\Logo.png")),
+        //PC
+        //Source = new BitmapImage(new Uri("C:\\Users\\quint\\Documents\\Github\\Memory-Opdracht\\WPF\\assets\\Logo.png")),
+        //LAPTOP
+        Source = new BitmapImage(new Uri("C:\\Users\\quint\\Documents\\Github\\Memory Opdracht\\WPF\\assets\\Logo.png")),
         Stretch = Stretch.Uniform,
     };
 
