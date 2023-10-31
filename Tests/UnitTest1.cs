@@ -1,3 +1,5 @@
+using Business.Entities;
+
 namespace Tests;
 
 public class Tests
@@ -14,8 +16,12 @@ public class Tests
 
 
     [Test]
-    public void Test1()
+    [TestCase(null, 0, "Speler", 5)]
+    [TestCase("Quinten", 5, "Quinten", 5)]
+    public void GameInputValidation(string name, int amount, string expectedName, int expectedAmount)
     {
-        Assert.Pass();
+        Game game = new Game(name, amount);
+        Assert.That(expectedName, Is.EqualTo(game.PlayerName));
+        Assert.That(expectedAmount, Is.EqualTo(game.CardAmount));
     }
 }

@@ -17,7 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF", "WPF\WPF.csproj", "{60A923CB-E0B0-4DB2-8625-46224C4A286C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0A99D0AB-B4AD-48E0-B5FF-CFA5FB3A898D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{0A99D0AB-B4AD-48E0-B5FF-CFA5FB3A898D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F} = {81B2EB65-1F5C-4AB9-AD11-FDC3C5C79D1F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
