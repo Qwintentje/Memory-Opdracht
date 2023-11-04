@@ -1,11 +1,10 @@
-﻿namespace Business.Entities;
+namespace Business.Entities;
 public class Card
 {
     public string Id { get; set; }
     public Card? MatchingCard { get; set; }
     public int Index { get; set; }
     public string Symbol { get; set; } = "";
-    //public afbeelding
     public bool IsTurned { get; set; }
     public string imagePath { get; set; } = "";
 
