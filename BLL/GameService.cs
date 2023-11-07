@@ -6,11 +6,10 @@ public static class GameService
     private static Stopwatch stopwatch { get; set; } = new Stopwatch();
     private static int defaultCardAmount = 5;
     //Console initialize
-    public static string Initialize(string playerName)
+    public static void Initialize(string playerName)
     {
         Game = new Game(playerName, defaultCardAmount);
         Game.SetCards();
-        return playerName;
     }
     //WPF Initialize
     public static void Initialize(string playerName, int cardAmount, List<string> uploadedImages)
