@@ -87,8 +87,8 @@ public partial class LobbyWindow : Window
             {
                 Image newImage = new Image
                 {
-                    Width = 100,
-                    Height = 100,
+                    Width = 50,
+                    Height = 50,
                     Margin = new Thickness(5),
                     Source = new BitmapImage(new Uri(selectedImagePath)),
                 };

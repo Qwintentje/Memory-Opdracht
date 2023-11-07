@@ -1,4 +1,4 @@
-﻿namespace WPF;
+﻿namespace Business;
 
 public static class FileService
 {
@@ -20,7 +20,7 @@ public static class FileService
             // Check for file name conflicts and handle appropriately
             if (File.Exists(destinationPath))
             {
-                MessageBox.Show($"Error: File '{fileName}' already exists in the destination directory.");
+                Console.WriteLine($"Error: File '{fileName}' already exists in the destination directory.");
                 return false; // Don't proceed with the upload
             }
             else
@@ -31,7 +31,7 @@ public static class FileService
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error uploading image: {ex.Message}");
+            Console.WriteLine($"Error uploading image: {ex.Message}");
             return false;
         }
     }
@@ -52,7 +52,7 @@ public static class FileService
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error clearing icons directory: {ex.Message}");
+            Console.WriteLine($"Error clearing icons directory: {ex.Message}");
         }
     }
 }
